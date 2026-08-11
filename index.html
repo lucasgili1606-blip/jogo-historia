@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo educativo sobre Fascismo e Nazismo">
+    <title>História em Jogo — Fascismo e Nazismo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="logo">
+            <span>H</span>
+            <div>
+                <strong>HISTÓRIA</strong>
+                <small>EM JOGO</small>
+            </div>
+        </div>
+
+        <div class="header-info">
+            <div>
+                <span>FASE</span>
+                <strong id="faseAtual">1</strong>
+            </div>
+
+            <div>
+                <span>PONTOS</span>
+                <strong id="pontuacao">0</strong>
+            </div>
+
+            <div>
+                <span>VIDAS</span>
+                <strong id="vidas">❤️❤️❤️</strong>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- TELA INICIAL -->
+        <section id="telaInicio" class="screen active">
+            <div class="hero">
+
+                <div class="hero-badge">
+                    JOGO EDUCATIVO • ENSINO MÉDIO
+                </div>
+
+                <h1>
+                    HISTÓRIA<br>
+                    <span>EM JOGO</span>
+                </h1>
+
+                <p class="subtitle">
+                    Fascismo e Nazismo
+                </p>
+
+                <p class="intro">
+                    Teste seus conhecimentos sobre o contexto histórico,
+                    as características e as consequências desses regimes
+                    totalitários do século XX.
+                </p>
+
+                <button class="btn btn-primary" onclick="iniciarJogo()">
+                    COMEÇAR JOGO
+                    <span>→</span>
+                </button>
+
+                <div class="warning">
+                    <strong>⚠ IMPORTANTE</strong>
+                    <p>
+                        Este jogo possui finalidade exclusivamente educativa.
+                        O conteúdo aborda esses regimes de forma histórica e crítica,
+                        sem promover ou glorificar suas ideologias.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cards-intro">
+
+                <div class="info-card">
+                    <div class="card-number">01</div>
+                    <h3>FASCISMO</h3>
+                    <p>
+                        Conheça o contexto italiano e as características
+                        do regime liderado por Benito Mussolini.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-number">02</div>
+                    <h3>NAZISMO</h3>
+                    <p>
+                        Entenda a ascensão do regime nazista e suas
+                        consequências para a Alemanha e a Europa.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-number">03</div>
+                    <h3>COMPARE</h3>
+                    <p>
+                        Descubra semelhanças e diferenças entre
+                        fascismo e nazismo.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- TELA DO JOGO -->
+        <section id="telaJogo" class="screen">
+
+            <div class="game-container">
+
+                <div class="game-heading">
+                    <div>
+                        <span class="section-label" id="categoria">
+                            CONTEXTO HISTÓRICO
+                        </span>
+
+                        <h2 id="tituloFase">
+                            Fase 1
+                        </h2>
+                    </div>
+
+                    <div class="question-counter">
+                        <span id="numeroPergunta">1</span>
+                        /
+                        <span id="totalPerguntas">10</span>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+
+                    <div class="question-number">
+                        QUESTÃO <span id="questaoNumero">01</span>
+                    </div>
+
+                    <h3 id="pergunta">
+                        Pergunta aparecerá aqui.
+                    </h3>
+
+                    <div id="alternativas" class="answers">
+                        <!-- alternativas inseridas pelo JavaScript -->
+                    </div>
+
+                    <div id="feedback" class="feedback"></div>
+
+                    <button
+                        id="btnProxima"
+                        class="btn btn-primary next-btn"
+                        onclick="proximaPergunta()"
+                        disabled
+                    >
+                        PRÓXIMA →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TELA FINAL -->
+        <section id="telaFinal" class="screen">
+
+            <div class="result-card">
+
+                <div class="result-icon" id="resultadoIcone">
+                    ★
+                </div>
+
+                <span class="section-label">
+                    RESULTADO FINAL
+                </span>
+
+                <h2 id="resultadoTitulo">
+                    Parabéns!
+                </h2>
+
+                <p id="resultadoMensagem">
+                    Você concluiu o desafio.
+                </p>
+
+                <div class="score-final">
+                    <span>SUA PONTUAÇÃO</span>
+                    <strong id="pontuacaoFinal">0</strong>
+                </div>
+
+                <div class="stats">
+
+                    <div>
+                        <strong id="acertosFinal">0</strong>
+                        <span>Acertos</span>
+                    </div>
+
+                    <div>
+                        <strong id="errosFinal">0</strong>
+                        <span>Erros</span>
+                    </div>
+
+                    <div>
+                        <strong id="percentualFinal">0%</strong>
+                        <span>Aproveitamento</span>
+                    </div>
+
+                </div>
+
+                <div class="result-message">
+                    <strong>Para lembrar:</strong>
+                    <p>
+                        O estudo do fascismo e do nazismo é importante para
+                        compreender os perigos do autoritarismo, da intolerância,
+                        do racismo e da destruição das instituições democráticas.
+                    </p>
+                </div>
+
+                <div class="final-buttons">
+                    <button class="btn btn-primary" onclick="reiniciarJogo()">
+                        JOGAR NOVAMENTE
+                    </button>
+
+                    <button class="btn btn-secondary" onclick="mostrarCronologia()">
+                        VER CRONOLOGIA
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CRONOLOGIA -->
+        <section id="telaCronologia" class="screen">
+
+            <div class="timeline-container">
+
+                <div class="timeline-header">
+                    <span class="section-label">LINHA DO TEMPO</span>
+
+                    <h2>Fascismo e Nazismo</h2>
+
+                    <p>
+                        Alguns acontecimentos fundamentais para compreender
+                        a ascensão e a queda desses regimes.
+                    </p>
+                </div>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="year">1919</div>
+                        <div class="timeline-content">
+                            <h3>Criação do movimento fascista italiano</h3>
+                            <p>
+                                Benito Mussolini organiza os Fasci Italiani di
+                                Combattimento, em um contexto de crise política
+                                e social na Itália.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="year">1922</div>
+                        <div class="timeline-content">
+                            <h3>Marcha sobre Roma</h3>
+                            <p>
+                                Mussolini chega ao poder após a Marcha sobre Roma
+                                e passa a consolidar uma ditadura fascista.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="year">1929</div>
+                        <div class="timeline-content">
+                            <h3>Grande Depressão</h3>
+                            <p>
+                                A crise econômica mundial amplia instabilidades
+                                políticas e sociais em diversos países.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="year">1933</div>
+                        <div class="timeline-content">
+                            <h3>Hitler chega ao poder</h3>
+                            <p>
+                                Adolf Hitler é nomeado chanceler da Alemanha.
+                                O regime nazista rapidamente elimina liberdades
+                                políticas e estabelece uma ditadura.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="year">1935</div>
+                        <div class="timeline-content">
+                            <h3>Leis de Nuremberg</h3>
+                            <p>
+                                O regime nazista aprova leis raciais que retiram
+                                direitos da população judaica e institucionalizam
+                                a perseguição antissemita.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="year">1939</div>
+                        <div class="timeline-content">
+                            <h3>Início da Segunda Guerra Mundial</h3>
+                            <p>
+                                A Alemanha invade a Polônia, dando início ao
+                                conflito europeu da Segunda Guerra Mundial.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="year">1945</div>
+                        <div class="timeline-content">
+                            <h3>Fim da guerra na Europa</h3>
+                            <p>
+                                A Alemanha nazista é derrotada. Mussolini é morto
+                                em abril e Hitler se suicida no final do mesmo mês.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="voltarInicio()"
+                >
+                    ← VOLTAR AO INÍCIO
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            Projeto educacional • História • Ensino Médio
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
